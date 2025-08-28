@@ -1,0 +1,42 @@
+{
+    "terminal.integrated.defaultProfile.linux": "bash",
+    "terminal.integrated.cwd": "/opt/librenms",
+    "files.watcherExclude": {
+        "**/vendor/**": true,
+        "**/node_modules/**": true,
+        "**/logs/**": true,
+        "**/rrd/**": true,
+        "**/storage/**": true
+    },
+    "search.exclude": {
+        "**/vendor": true,
+        "**/node_modules": true,
+        "**/logs": true,
+        "**/rrd": true,
+        "**/storage/framework": true,
+        "**/storage/logs": true
+    },
+    "php.validate.enable": true,
+    "php.validate.run": "onType",
+    "intelephense.files.exclude": [
+        "**/.git/**",
+        "**/.svn/**",
+        "**/.hg/**",
+        "**/CVS/**",
+        "**/.DS_Store/**",
+        "**/node_modules/**",
+        "**/bower_components/**",
+        "**/vendor/**/{Test,test,Tests,tests}/**",
+        "**/storage/**",
+        "**/logs/**",
+        "**/rrd/**"
+    ],
+    "editor.rulers": [
+        120
+    ],
+    "editor.tabSize": 4,
+    "editor.insertSpaces": true,
+    "files.eol": "\n",
+    "files.trimTrailingWhitespace": true,
+    "files.insertFinalNewline": true
+}

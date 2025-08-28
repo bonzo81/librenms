@@ -1,0 +1,75 @@
+{
+    "name": "LibreNMS Development",
+    "dockerComposeFile": "docker-compose.yml",
+    "service": "librenms",
+    "workspaceFolder": "/opt/librenms",
+    // Configure tool-specific properties.
+    "customizations": {
+        "vscode": {
+            "settings": {
+                "php.validate.executablePath": "/usr/bin/php",
+                "php.suggest.basic": false,
+                "editor.formatOnSave": true,
+                "files.associations": {
+                    "*.php": "php"
+                },
+                "terminal.integrated.defaultProfile.linux": "bash",
+                "terminal.integrated.cwd": "/opt/librenms",
+                "files.watcherExclude": {
+                    "**/vendor/**": true,
+                    "**/node_modules/**": true,
+                    "**/logs/**": true,
+                    "**/rrd/**": true,
+                    "**/storage/**": true
+                },
+                "search.exclude": {
+                    "**/vendor": true,
+                    "**/node_modules": true,
+                    "**/logs": true,
+                    "**/rrd": true,
+                    "**/storage/framework": true,
+                    "**/storage/logs": true
+                }
+            },
+            "extensions": [
+                "bmewburn.vscode-intelephense-client",
+                "ms-vscode.vscode-json",
+                "redhat.vscode-yaml",
+                "bradlc.vscode-tailwindcss",
+                "vue.volar",
+                "ms-python.python"
+            ]
+        }
+    },
+    // Features to add to the dev container
+    "features": {
+        "ghcr.io/devcontainers/features/git:1": {},
+        "ghcr.io/devcontainers/features/github-cli:1": {},
+        "ghcr.io/devcontainers/features/common-utils:1": {
+            "installZsh": false,
+            "username": "automatic",
+            "userUid": "1002",
+            "userGid": "1002"
+        }
+    },
+    // Use 'forwardPorts' to make a list of ports inside the container available locally.
+    "forwardPorts": [
+        8080,
+        3306
+    ],
+    // Use 'postCreateCommand' to run commands after the container is created.
+    "postCreateCommand": ".devcontainer/setup.sh",
+    // Comment out to connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
+    "remoteUser": "librenms",
+    // Mount the current directory to /opt/librenms in the container
+    "mounts": [
+        "source=${localWorkspaceFolder},target=/opt/librenms,type=bind,consistency=cached"
+    ],
+    // Additional configuration for better development experience
+    "containerEnv": {
+        "HOST_USER_ID": "1002",
+        "HOST_GROUP_ID": "1002"
+    },
+    // Override the container command to handle permissions on startup
+    "overrideCommand": false
+}

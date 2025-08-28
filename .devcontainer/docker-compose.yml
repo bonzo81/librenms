@@ -1,0 +1,50 @@
+services:
+  librenms:
+    build: 
+      context: ..
+      dockerfile: .devcontainer/Dockerfile
+    container_name: librenms-dev
+    hostname: librenms
+    ports:
+      - "8080:80"
+      - "8443:443"
+    volumes:
+      - ..:/opt/librenms:cached
+    environment:
+      - CONTAINER_NAME=librenms
+      - PUID=1000
+      - PGID=1000
+      - DB_HOST=db
+      - DB_DATABASE=librenms
+      - DB_USERNAME=librenms
+      - DB_PASSWORD=librenmspassword
+    depends_on:
+      - db
+    networks:
+      - librenms
+    command: /bin/bash -c "/usr/local/bin/startup.sh"
+
+  db:
+    image: mariadb:10.11
+    container_name: librenms-db
+    command: 
+      - mysqld
+      - --innodb-file-per-table=1
+      - --lower-case-table-names=0
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci
+    volumes:
+      - librenms-db:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=librenmsrootpassword
+      - MYSQL_DATABASE=librenms
+      - MYSQL_USER=librenms
+      - MYSQL_PASSWORD=librenmspassword
+    networks:
+      - librenms
+
+volumes:
+  librenms-db:
+
+networks:
+  librenms:
