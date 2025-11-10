@@ -77,7 +77,7 @@ class Location extends Model
      */
     public function coordinatesValid()
     {
-        return $this->lat && $this->lng &&
+        return $this->lat != 0 && $this->lng != 0 &&
             abs($this->lat) <= 90 && abs($this->lng) <= 180;
     }
 
