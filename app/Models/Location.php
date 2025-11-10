@@ -48,13 +48,13 @@ class Location extends Model
     private $location_ignore_regex = '/\(.*?\)/';
 
     /**
-     * @return array{lat: 'float', lng: 'float', fixed_coordinates: 'bool'}
+     * @return array{lat: 'decimal:8', lng: 'decimal:8', fixed_coordinates: 'bool'}
      */
     protected function casts(): array
     {
         return [
-            'lat' => 'float',
-            'lng' => 'float',
+            'lat' => 'decimal:8',
+            'lng' => 'decimal:8',
             'fixed_coordinates' => 'bool',
         ];
     }
